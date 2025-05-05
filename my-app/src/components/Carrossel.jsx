@@ -37,6 +37,9 @@ export function Carrossel() {
   const proximoIdx = (index + 1) % jogosMock.length;
 
   return (
+    <>
+    <div className="carousel-title">Jogos Populares</div>
+
     <div
       className="carousel-container"
       onMouseEnter={() => setHovering(true)}
@@ -65,5 +68,7 @@ export function Carrossel() {
       </div>
       <button className="arrow right" onClick={proximo}>&gt;</button>
     </div>
+
+    </>
   );
 }

@@ -11,11 +11,11 @@ function App() {
 
     <Routes>
       <Route path="/jogos" element={<Jogos />} />
+      <Route path="/" element={<Carrossel />} />
     </Routes>
     
     <MyAppBar />
-    <div className="carousel-title">Jogos Populares</div>
-        <Carrossel />
+    
     
     </>
   );
