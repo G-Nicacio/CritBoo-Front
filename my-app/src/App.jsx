@@ -1,17 +1,21 @@
 
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 import { MyAppBar } from "./components/AppBar";
 import { Carrossel } from "./components/Carrossel";
+import { Jogos } from './Jogos';
 
 function App() {
   return (
-    <BrowserRouter>
-      <MyAppBar />
-      <div style={{ marginTop: '10px' }}>
-        <Carrossel />
-      </div>
-    </BrowserRouter>
+    <>
+
+    <Routes>
+      <Route path="/jogos" element={<Jogos />} />
+    </Routes>
+    
+    <MyAppBar />
+    
+    </>
   );
 }
 
