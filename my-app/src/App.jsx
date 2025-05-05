@@ -1,4 +1,3 @@
-
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 import { MyAppBar } from "./components/AppBar";
@@ -7,6 +6,7 @@ import { Jogos } from './Jogos';
 
 function App() {
   return (
+
     <>
 
     <Routes>
@@ -14,6 +14,8 @@ function App() {
     </Routes>
     
     <MyAppBar />
+    <div className="carousel-title">Jogos Populares</div>
+        <Carrossel />
     
     </>
   );
