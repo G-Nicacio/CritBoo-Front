@@ -4,9 +4,19 @@
   padding: 2rem;
   text-align: center;
 }
-/* body{
-  background-color: ;
-} */
+
+.carousel-title {
+  top: 100px;
+  left: 41%;
+  position: absolute;
+  z-index: 10;
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: white;
+  text-shadow: 2px 2px 8px #000;
+}
+
 .logo {
   height: 6em;
   padding: 1.5em;

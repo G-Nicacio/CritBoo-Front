@@ -1,4 +1,3 @@
-
 import { BrowserRouter } from 'react-router-dom';
 import './App.css';
 import { MyAppBar } from "./components/AppBar";
@@ -8,9 +7,8 @@ function App() {
   return (
     <BrowserRouter>
       <MyAppBar />
-      <div style={{ marginTop: '10px' }}>
+      <div className="carousel-title">Jogos Populares</div>
         <Carrossel />
-      </div>
     </BrowserRouter>
   );
 }
