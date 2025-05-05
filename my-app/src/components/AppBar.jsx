@@ -29,7 +29,7 @@ export const MyAppBar = () => {
     const navigate = useNavigate();
 
     const menuItems = [
-        { label: 'JOGOS', path: '/films' },
+        { label: 'JOGOS', path: '/jogos' },
         { label: 'NOTICIAS', path: '/lists' },
         { label: 'LOGAR', path: '/signin' },
     ];
