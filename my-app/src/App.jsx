@@ -1,22 +1,23 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import './App.css';
 import { MyAppBar } from "./components/AppBar";
 import { Carrossel } from "./components/Carrossel";
 import { Jogos } from './Jogos';
+import Perfil from './pages/Perfil';
+import EditarPerfil from './pages/EditarPerfil';
 
 function App() {
   return (
-
     <>
-
-    <Routes>
-      <Route path="/jogos" element={<Jogos />} />
-      <Route path="/" element={<Carrossel />} />
-    </Routes>
-    
-    <MyAppBar />
-    
-    
+      <MyAppBar />
+      <div style={{ marginTop: '80px' }}>
+        <Routes>
+          <Route path="/" element={<Carrossel />} />
+          <Route path="/jogos" element={<Jogos />} />
+          <Route path="/perfil" element={<Perfil />} />
+          <Route path="/editar-perfil" element={<EditarPerfil />} />
+        </Routes>
+      </div>
     </>
   );
 }
