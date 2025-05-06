@@ -7,7 +7,7 @@ export function Estudio() {
   const [mostrarTodos, setMostrarTodos] = useState(false);
   const navigate = useNavigate();
   const { id } = useParams();
-  const [estudio, setEstudio] = useState(null);
+  const [estudio, setEstudio] = useState([]);
   const [jogos, setJogos] = useState([]);
 
   useEffect(() => {
