@@ -32,7 +32,6 @@ export const MyAppBar = () => {
         { label: 'JOGOS', path: '/jogos' },
         { label: 'NOTICIAS', path: '/noticias' },
         { label: 'LOGAR', path: '/signin' },
-        { label: 'LOGAR', path: '/login' },
     ];
 
   return (

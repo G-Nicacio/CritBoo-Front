@@ -11,8 +11,7 @@ import Post from './pages/Post';
 import { Noticia } from './pages/Noticia';
 import { Login } from './pages/Login'
 import { Cadastro } from './pages/Cadastro';
-
-
+import { Noticia_esp } from './pages/Noticia_esp';
 
 function App() {
   return (
@@ -26,10 +25,11 @@ function App() {
           <Route path="/perfil" element={<Perfil />} />
           <Route path="/post" element={<Post />} />
           <Route path="/editar-perfil" element={<EditarPerfil />} />
-          <Route path="/estudio" element={<Estudio />} />
+          <Route path="/estudio/:id" element={<Estudio />} />
           <Route path="/noticias" element={<Noticia />} />
           <Route path="/login" element={<Login/>} /> 
           <Route path="/cadastro" element={<Cadastro/>} /> 
+          <Route path="/noticias/:id" element={<Noticia_esp />} />
         </Routes>
       </div>
     </>
