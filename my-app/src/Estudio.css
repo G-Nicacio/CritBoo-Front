@@ -1,179 +1,164 @@
-/* ===== Estilo Geral ===== */
 body {
-    background-color: #212121;
-    margin: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  }
-  
-  /* ===== Container Principal ===== */
-  /* ===== Container Principal ===== */
-.estudio-container {
-    padding: 2rem 2rem;
-    margin-top: 30px;
-    max-width: 800px; /* controla largura para não estourar */
-    margin-left: 0;   /* alinha à esquerda */
-  }
-  
-  /* ===== Cabeçalho do Estúdio ===== */
-  .estudio-header {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    background-color: #2e2e2e;
-    padding: 1rem 1.5rem;
-    border-radius: 8px;
-    margin-bottom: 2rem;
-    margin-left: -100px;
-    width: 128%;
-  }
-  
-  /* ===== Identidade: logo e textos ===== */
-  .estudio-identidade {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    margin-bottom: 1rem;
-  }
-  
-  /* ===== Textos do Estúdio ===== */
-  .estudio-textos {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    text-align: left;
-  }
-  
-  .estudio-nome {
-    font-size: 30px;
-    font-weight: bold;
-    color: #fff;
-    margin: 0;
-  }
-  
-  .estudio-data {
-    margin: 4px 0 0;
-    font-size: 16px;
-    color: #acb2b8;
-  }
-  
-  /* ===== Logo ===== */
-  .estudio-logo {
-    height: 96px;
-    border-radius: 8px;
-  }
-  
-  
-  
-  /* ===== Sobre (estilo Steam) ===== */
-  .estudio-desc  {
-    background-color: rgba(200, 200, 200, 0.1);
-    border: 1px solid rgba(200, 200, 200, 0.3);
-    border-radius: 4px;
-    padding: 1rem 1.5rem;
-    color: #c7d5e0;
-    font-size: 15px;
-    line-height: 1.5;
-    margin-bottom: 2rem;
-    max-width: 100%;
-  }
-  
-  /* ===== Jogo em Destaque ===== */
-  .jogo-destaque {
-    margin-top: 70px;
-    margin-bottom: 40px;
-    max-width: 700px;
-    
-    color: #fff;
-  }
+  background-color: #212121;
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
 
-  .imagem-destaque:hover {
-    transform: scale(1.02);
-  }
-  
-  .card-destaque {
-    background-color: #2a2a2a;
-    padding: 1rem;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
-    display: flex;
-    gap: 1rem;
-  }
-  
-  .imagem-destaque {
-    width: 250px;
-    border-radius: 6px;
-    transition: transform 0.2s ease;
-    object-fit: cover;
-  }
-  
-  /* ===== Lista de Jogos ===== */
-  .jogos-lista {
-    margin-top: 100px;
-    color: #fff;
-  }
-  
-  .jogos-lista-horizontal {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-  
-  /* ===== Cartão de Jogo - Horizontal estilo Steam ===== */
-  .jogo-card {
-    display: flex;
-    background-color: #171616;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
-    padding: 20px;
-    color: #c7d5e0;
-    align-items: flex-start;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: transform 0.2s ease;
-  }
-  
-  .jogo-card:hover {
-    transform: scale(1.02);
-  }
-  
-  .jogo-card img {
-    width: 190px;
-    height: auto;
-    object-fit: cover;
-    border-radius: 4px;
-    flex-shrink: 0;
-  }
-  
-  .jogo-info {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    flex: 1;
-    padding-left: 1rem;
-  }
-  
-  .jogo-info h3 {
-    font-size: 18px;
-    font-weight: bold;
-    color: #fff;
-    margin: 0 0 5px 0;
-  }
-  
-  .jogo-data {
-    font-size: 14px;
-    color: #acb2b8;
-    margin-bottom: 10px;
-  }
-  
-  .jogo-descricao {
-    font-size: 15px;
-    line-height: 1.5;
-    color: #c7d5e0;
-  }
-  
-  /* ===== Botão Mostrar Mais ===== */
-  .botao-mais {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-  }
-  
+.estudio-container {
+  padding: 2rem 2rem;
+  margin-top: 30px;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.estudio-header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background-color: #2e2e2e;
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+}
+
+.estudio-identidade {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.estudio-textos {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.estudio-nome {
+  font-size: 30px;
+  font-weight: bold;
+  color: #fff;
+  margin: 0;
+}
+
+.estudio-data {
+  margin: 4px 0 0;
+  font-size: 16px;
+  color: #acb2b8;
+}
+
+.estudio-logo {
+  height: 96px;
+  border-radius: 8px;
+}
+
+.estudio-desc  {
+  background-color: rgba(200, 200, 200, 0.1);
+  border: 1px solid rgba(200, 200, 200, 0.3);
+  border-radius: 4px;
+  padding: 1rem 1.5rem;
+  color: #c7d5e0;
+  font-size: 15px;
+  line-height: 1.5;
+  margin-bottom: 2rem;
+  max-width: 100%;
+}
+
+.jogo-destaque {
+  margin-top: 70px;
+  margin-bottom: 40px;
+  max-width: 100%;
+  color: #fff;
+}
+
+.imagem-destaque:hover {
+  transform: scale(1.04);
+}
+
+.card-destaque {
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+  display: flex;
+  gap: 1rem;
+  max-width: 1000px;
+}
+
+.imagem-destaque {
+  width: 250px;
+  border-radius: 6px;
+  transition: transform 0.2s ease;
+  object-fit: cover;
+  background-color: transparent;
+  border-radius: 7px;
+}
+
+.jogos-lista {
+  margin-top: 100px;
+  color: #fff;
+}
+
+.jogos-lista-horizontal {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
+.jogo-card {
+  display: flex;
+  flex-direction: column;
+  background-color: #171616;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+  padding: 20px;
+  color: #c7d5e0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  align-items: center;
+  text-align: center;
+}
+
+.jogo-card:hover {
+  transform: scale(1.02);
+}
+
+.jogo-card img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.jogo-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 0.5rem;
+}
+
+.jogo-info h3 {
+  font-size: 18px;
+  font-weight: bold;
+  color: #fff;
+  margin: 0 0 5px 0;
+}
+
+.jogo-data {
+  font-size: 14px;
+  color: #acb2b8;
+  margin-bottom: 10px;
+}
+
+.jogo-descricao {
+  font-size: 15px;
+  line-height: 1.5;
+  color: #c7d5e0;
+}
+
+.botao-mais {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}

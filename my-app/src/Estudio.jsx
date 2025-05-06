@@ -57,7 +57,6 @@ export function Estudio() {
 
   return (
     <div className="estudio-container">
-      {/* Cabeçalho do estúdio */}
       <div className="estudio-header">
         <div className="estudio-identidade">
           <img src="/blendo-logo.png" alt="Logo BlendoGames" className="estudio-logo" />
@@ -68,12 +67,10 @@ export function Estudio() {
         </div>
       </div>
 
-      {/* Sobre (estilo Steam) */}
       <div className="estudio-desc">
         Descrição do estudio
       </div>
 
-      {/* Jogo em destaque */}
       <div className="jogo-destaque">
         <h2>Jogo em Destaque</h2>
         <Card className="card-destaque">
@@ -86,7 +83,6 @@ export function Estudio() {
         </Card>
       </div>
 
-      {/* Lista de jogos */}
       <div className="jogos-lista">
         <h2>Todos os Jogos</h2>
         <div className="jogos-lista-horizontal">
