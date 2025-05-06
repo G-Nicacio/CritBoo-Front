@@ -214,3 +214,58 @@
   font-size: 1rem;
   color: #ccc;
 }
+
+.noticia-wrapper {
+  padding: 40px 20px;
+  background-color: #1e1e1e;
+  color: #fff;
+}
+
+.noticia-title {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.noticia-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.noticia-box {
+  background-color: #2a2a2a;
+  padding: 20px;
+  border-radius: 12px;
+  max-width: 500px;
+  flex: 1 1 40%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.noticia-box-title {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.noticia-content {
+  font-size: 1rem;
+  margin-bottom: 15px;
+}
+
+.noticia-jogo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.noticia-img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.noticia-jogo-nome {
+  font-weight: bold;
+}
