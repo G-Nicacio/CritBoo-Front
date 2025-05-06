@@ -30,8 +30,8 @@ export const MyAppBar = () => {
 
     const menuItems = [
         { label: 'JOGOS', path: '/jogos' },
-        { label: 'NOTICIAS', path: '/lists' },
-        { label: 'LOGAR', path: '/signin' },
+        { label: 'NOTICIAS', path: '/noticias' },
+        { label: 'LOGAR', path: '/login' },
     ];
 
   return (
@@ -47,8 +47,13 @@ export const MyAppBar = () => {
         }}
       >
           <Box sx={{ display: 'flex', alignItems: 'center', flex: 1 }}>
-            <img src="/fotinha.jpg" alt="Logo" style={{ height: 30, marginRight: 8 }} />
-            <Typography variant="h6" fontWeight="bold" sx={{ cursor: 'pointer' }} onClick={() => navigate('/')}>CritBoo</Typography>
+          <img
+            src="/critboo.png"
+            alt="Logo"
+            style={{ cursor: 'pointer', height: 30, marginRight: 8 }}
+            onClick={() => navigate('/')}
+          />
+
           </Box>
 
         <Box sx={{ display: 'flex', gap: 4, justifyContent: 'center', flex: 2 }}>
