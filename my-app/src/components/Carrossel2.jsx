@@ -16,6 +16,19 @@ const games = [
 export function Carrossel2() {
     const navigate = useNavigate();
 
+    // const [jogos, setJogos] = useState([])
+    // useEffect(() => {
+
+    //     fetch('http://localhost:8080/jogos', {
+    //         method: 'GET'
+    //     }).then(response => {
+    //         return response.json()
+    //     }).then(data => {
+    //         setJogos(data.content)
+    //     })
+
+    // }, [])
+
 
     const settings = {
         dots: true,
@@ -29,7 +42,7 @@ export function Carrossel2() {
         <Box sx={{ width: '100%', p: 2}}>
           <Slider {...settings}>
             {games.map((game, index) => (
-                <button className='jogo' onClick={() => navigate(`/jogo/${game.id}`)}>
+                <Typography variant="h6" fontWeight="bold" sx={{ cursor: 'pointer' }} onClick={() => navigate(`/jogo/${game.id}`)}>
               <Card key={index} sx={{ mx: 1, backgroundColor: 'black', color: 'white' }}>
                 <CardMedia
                   component="img"
@@ -43,7 +56,7 @@ export function Carrossel2() {
                   </Typography>
                 </CardContent>
               </Card>
-              </button>
+              </Typography>
             ))}
           </Slider>
         </Box>

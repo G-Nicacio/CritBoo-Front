@@ -1,0 +1,68 @@
+.editar-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #1c1c1c;
+    color: #fff;
+    padding: 40px 20px;
+  }
+  
+  .editar-card {
+    background-color: #2c2c2c;
+    padding: 30px 40px;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    max-width: 500px;
+  }
+  
+  .editar-card h1 {
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 28px;
+    color: #e0e0e0;
+  }
+  
+  .editar-form .form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
+  
+  .editar-form label {
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #bbb;
+  }
+  
+  .editar-form input {
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+    background-color: #3a3a3a;
+    color: #fff;
+    font-size: 14px;
+  }
+  
+  .editar-form input::placeholder {
+    color: #888;
+  }
+  
+  .btn-salvar {
+    width: 100%;
+    padding: 12px;
+    background-color: #444;
+    border: none;
+    border-radius: 6px;
+    color: #fff;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .btn-salvar:hover {
+    background-color: #555;
+  }
+  
