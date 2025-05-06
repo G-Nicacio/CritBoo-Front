@@ -1,0 +1,81 @@
+/* Wrapper da seção de notícias */
+.noticia-wrapper {
+    padding: 2rem;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center; /* Centraliza o conteúdo */
+    justify-content: flex-start; /* Garante que o conteúdo comece do topo */
+    height: 100%; /* Garante que ocupe o espaço da tela */
+  }
+  
+  /* Seção do título de notícias */
+  .noticia-title-container {
+    display: flex;
+    justify-content: center; /* Centraliza o título */
+    width: 100%;
+    margin-bottom: 2rem; /* Espaço entre o título e as boxes */
+  }
+  
+  /* Título da seção de notícias */
+  .noticia-title {
+    font-size: 2.5rem;
+    color: #ffffff;
+    text-align: center;
+  }
+  
+  /* Container das notícias */
+  .noticia-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    width: 100%;
+    justify-content: flex-start;
+    align-items: center; /* Centraliza as boxes */
+  }
+  
+  /* Box de cada notícia */
+  .noticia-box {
+    background-color: #2a2a2a; /* Cor de fundo da box */
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    width: 100%; /* Preenche a largura disponível */
+    max-width: 1000px; /* Tamanho máximo das boxes */
+  }
+  
+  /* Título da notícia */
+  .noticia-box-title {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+  }
+  
+  /* Conteúdo da notícia */
+  .noticia-content {
+    font-size: 1.1rem;
+    line-height: 1.6;
+  }
+  
+  /* Informações sobre o jogo relacionado */
+  .noticia-jogo {
+    display: flex;
+    align-items: center;
+    margin-top: 1rem;
+  }
+  
+  /* Imagem do jogo */
+  .noticia-img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-right: 1rem;
+  }
+  
+  /* Nome do jogo */
+  .noticia-jogo-nome {
+    font-weight: bold;
+    font-size: 1.1rem;
+  }
+  

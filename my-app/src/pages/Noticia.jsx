@@ -1,43 +1,75 @@
 import React from 'react';
-import { Box, Typography, Grid } from '@mui/material';
+import '../Noticia.css';
 
 export function Noticia() {
-    return (
-        <>
-        <Typography variant="h2" sx={{ textAlign: 'center', color: '#ffffff', mb: 4 }}>
-            Notícias
-        </Typography>
-        <Box sx={{ backgroundColor: '#1e1e1e', color: '#dbe3eb', py: 6, px: 4 }}>
-          <Grid container spacing={4} alignItems="center">
-            <Grid size={12} md={6}>
-                <img src="/celeste.jpg" alignItems="center"
-                />
-              <Box
-                alt="Punks and Drunks"
-                sx={{
-                  width: '100%',
-                  borderRadius: 1,
-                  boxShadow: 3,
-                  paddingTop: '20px'
-                }}
-              />
-            </Grid>
-            <Grid item xs={12} md={6}>
-              <Typography variant="subtitle2" sx={{ color: '#b0c4d4', textTransform: 'uppercase', mb: 1 }}>
-                Shelf Life
-              </Typography>
-              <Typography variant="h4" sx={{ fontWeight: 'bold', color: '#ffffff', mb: 2 }}>
-                Punks, Drunks and Love.
-              </Typography>
-              <Typography variant="body1" sx={{ fontSize: '1.2rem', lineHeight: 1.8 }}>
-                A brand new label on the circuit, a classic for the boozers, Robert De Niro and Meryl Streep falling in love, French cannibalism and the ultimate date movie for goths all feature in the latest edition of <i>Shelf Life</i>.
-              </Typography>
-              <Typography variant="caption" sx={{ mt: 3, display: 'block', color: '#a0b8cc' }}>
-                KATIE RIFE
-              </Typography>
-            </Grid>
-          </Grid>
-        </Box>
-        </>
-      );
+  const noticias = [
+    {
+      id: 1,
+      titulo: "Celeste completa 5 anos",
+      conteudo: "O aclamado jogo de plataforma Celeste celebra seu quinto aniversário com um novo capítulo gratuito que oferece desafios inéditos aos jogadores.",
+      jogo: {
+        nome: "Celeste",
+        imagem: "/celeste.jpg"
+      }
+    },
+    {
+      id: 2,
+      titulo: "Novo DLC de God of War",
+      conteudo: "God of War Ragnarok receberá um novo DLC que expande a história e oferece mais desafios para Kratos e Atreus.",
+      jogo: {
+        nome: "God of War Ragnarok",
+        imagem: "/gow-ragnarok.jpg"
+      }
+    },
+    {
+      id: 3,
+      titulo: "Hollow Knight: Silksong é confirmado",
+      conteudo: "Após anos de espera, Hollow Knight: Silksong finalmente foi confirmado com data de lançamento para o ano seguinte.",
+      jogo: {
+        nome: "Hollow Knight",
+        imagem: "/hk.jpg"
+      }
+    },
+    {
+      id: 4,
+      titulo: "Elden Ring recebe Modo Fotografia",
+      conteudo: "A FromSoftware lançou uma atualização para Elden Ring que inclui um aguardado modo fotografia, permitindo aos jogadores capturar momentos épicos das batalhas e paisagens deslumbrantes do mundo de Lands Between.",
+      jogo: {
+        nome: "Elden Ring",
+        imagem: "/eldenring.jpg"
+      }
+    },
+    {
+      id: 5,
+      titulo: "Red Dead Redemption 2 ganha remasterização",
+      conteudo: "Red Dead Redemption 2 acaba de ganhar uma remasterização para as novas gerações de consoles, trazendo gráficos mais realistas e um desempenho melhor.",
+      jogo: {
+        nome: "Red Dead Redemption 2",
+        imagem: "/rdr2.jpg"
+      }
     }
+  ];
+
+  return (
+    <div className="noticia-wrapper">
+      {/* Div do título centralizado */}
+      <div className="noticia-title-container">
+        <h2 className="noticia-title">Notícias</h2>
+      </div>
+
+      {/* Container das boxes de notícias */}
+      <div className="noticia-container">
+        {noticias.map((noticia) => (
+          <div key={noticia.id} className="noticia-box">
+            <h3 className="noticia-box-title">{noticia.titulo}</h3>
+            <p className="noticia-content">{noticia.conteudo}</p>
+            <div className="noticia-jogo">
+              <img src={noticia.jogo.imagem} alt={noticia.jogo.nome} className="noticia-img" />
+              <span className="noticia-jogo-nome">{noticia.jogo.nome}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}

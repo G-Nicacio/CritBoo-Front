@@ -29,9 +29,9 @@ export const MyAppBar = () => {
     const navigate = useNavigate();
 
     const menuItems = [
+      { label: 'HOME', path: '/' },
         { label: 'JOGOS', path: '/jogos' },
         { label: 'NOTICIAS', path: '/noticias' },
-        { label: 'LOGAR', path: '/signin' },
         { label: 'LOGAR', path: '/login' },
     ];
 
