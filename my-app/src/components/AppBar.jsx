@@ -46,10 +46,10 @@ export const MyAppBar = () => {
           margin: '0 auto',
         }}
       >
-        <Box sx={{ display: 'flex', alignItems: 'center', flex: 1 }}>
-          <img src="/fotinha.jpg" alt="Logo" style={{ height: 30, marginRight: 8 }} />
-          <Typography variant="h6" fontWeight="bold">CritBoo</Typography>
-        </Box>
+          <Box sx={{ display: 'flex', alignItems: 'center', flex: 1 }}>
+            <img src="/fotinha.jpg" alt="Logo" style={{ height: 30, marginRight: 8 }} />
+            <Typography variant="h6" fontWeight="bold" sx={{ cursor: 'pointer' }} onClick={() => navigate('/')}>CritBoo</Typography>
+          </Box>
 
         <Box sx={{ display: 'flex', gap: 4, justifyContent: 'center', flex: 2 }}>
           {menuItems.map(({ label, path }) => (
