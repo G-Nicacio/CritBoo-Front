@@ -9,12 +9,14 @@ import EditarPerfil from './pages/EditarPerfil';
 import { Jogo } from './Jogo';
 import Post from './pages/Post';
 import { Noticia } from './pages/Noticia';
+import { Login } from './pages/Login'
+import { Cadastro } from './pages/Cadastro';
+
 
 
 function App() {
   return (
     <>
-
       <MyAppBar />
       <div style={{ marginTop: '80px' }}>
         <Routes>
@@ -26,6 +28,8 @@ function App() {
           <Route path="/editar-perfil" element={<EditarPerfil />} />
           <Route path="/estudio" element={<Estudio />} />
           <Route path="/noticias" element={<Noticia />} />
+          <Route path="/login" element={<Login/>} /> 
+          <Route path="/cadastro" element={<Cadastro/>} /> 
         </Routes>
       </div>
     </>
