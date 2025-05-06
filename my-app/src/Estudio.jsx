@@ -6,7 +6,7 @@ import './Estudio.css';
 export function Estudio() {
   const [mostrarTodos, setMostrarTodos] = useState(false);
   const navigate = useNavigate();
-  const { id } = useParams(); // Pega o id da URL
+  const { id } = useParams();
   const [estudio, setEstudio] = useState(null);
   const [jogos, setJogos] = useState([]);
 
@@ -18,7 +18,7 @@ export function Estudio() {
       })
       .then((data) => {
         setEstudio(data);
-        setJogos(data.jogos || []); // Supondo que venha junto
+        setJogos(data.jogos || []);
       })
       .catch((error) => {
         console.error("Erro ao buscar estudio:", error);
