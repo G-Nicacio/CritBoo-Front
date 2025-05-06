@@ -6,8 +6,9 @@ import { Jogos } from './Jogos';
 import { Estudio } from './Estudio';
 import Perfil from './pages/Perfil';
 import EditarPerfil from './pages/EditarPerfil';
-import { Jogo } from '../../Jogo';
+import { Jogo } from './Jogo';
 import Post from './pages/Post';
+import { Noticia } from './pages/Noticia';
 
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
           <Route path="/post" element={<Post />} />
           <Route path="/editar-perfil" element={<EditarPerfil />} />
           <Route path="/estudio" element={<Estudio />} />
+          <Route path="/noticias" element={<Noticia />} />
         </Routes>
       </div>
     </>
