@@ -6,10 +6,12 @@ import { Jogos } from './Jogos';
 import { Estudio } from './Estudio';
 import Perfil from './pages/Perfil';
 import EditarPerfil from './pages/EditarPerfil';
-import { Jogo } from '../../Jogo';
+import { Jogo } from './Jogo';
 import Post from './pages/Post';
+import { Noticia } from './pages/Noticia';
 import { Login } from './pages/Login'
 import { Cadastro } from './pages/Cadastro';
+
 
 
 function App() {
@@ -25,6 +27,7 @@ function App() {
           <Route path="/post" element={<Post />} />
           <Route path="/editar-perfil" element={<EditarPerfil />} />
           <Route path="/estudio" element={<Estudio />} />
+          <Route path="/noticias" element={<Noticia />} />
           <Route path="/login" element={<Login/>} /> 
           <Route path="/cadastro" element={<Cadastro/>} /> 
         </Routes>

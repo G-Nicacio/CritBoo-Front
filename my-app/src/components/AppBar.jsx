@@ -31,6 +31,7 @@ export const MyAppBar = () => {
     const menuItems = [
         { label: 'JOGOS', path: '/jogos' },
         { label: 'NOTICIAS', path: '/noticias' },
+        { label: 'LOGAR', path: '/signin' },
         { label: 'LOGAR', path: '/login' },
     ];
 

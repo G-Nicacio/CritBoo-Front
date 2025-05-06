@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useParams } from 'react-router-dom';
 import { Box, Typography, Button, Card, CardMedia, Rating, Grid } from "@mui/material";
 import { useEffect } from "react";
+import TextField from '@mui/material/TextField';
+
 
 export function Jogo() {
     const { id } = useParams();
@@ -64,81 +66,77 @@ export function Jogo() {
       </Grid>
 
 
-    <Box
-      sx={{
-        width: "100%",
-        maxWidth: 800,
-        mt: 4,
-        backgroundColor: "#2c2c2c",
-        borderRadius: 2,
-        padding: 2,
-      }}
-    >
-      <Typography variant="h5" gutterBottom>
-        Comentários
+      <Box
+  sx={{
+    width: "100%",
+    maxWidth: 800,
+    mt: 4,
+    backgroundColor: "#2c2c2c",
+    borderRadius: 2,
+    padding: 2,
+  }}
+>
+  <Typography variant="h5" gutterBottom>
+    Postagens
+  </Typography>
+
+  <Box
+    sx={{
+      display: "flex",
+      flexDirection: "column",
+      gap: 2,
+      mt: 2,
+    }}
+  >
+    {/* Comentários existentes */}
+    <Box sx={{ backgroundColor: "#1e1e1e", padding: 2, borderRadius: 1 }}>
+      <Typography variant="subtitle2" color="gray">
+        Usuário1
       </Typography>
-      <Box
-        sx={{
-        display: "flex",
-        flexDirection: "column",
-        gap: 2,
-        }}
-      >
-        <Box
-        sx={{
-          backgroundColor: "#1e1e1e",
-          padding: 2,
-          borderRadius: 1,
-        }}
-        >
-        <Typography variant="subtitle2" color="gray">
-          Usuário1
-        </Typography>
-        <Typography variant="body2">
-          Esse jogo é incrível! A história é muito envolvente.
-        </Typography>
-        </Box>
-        <Box
-        sx={{
-          backgroundColor: "#1e1e1e",
-          padding: 2,
-          borderRadius: 1,
-        }}
-        >
-        <Typography variant="subtitle2" color="gray">
-          Usuário2
-        </Typography>
-        <Typography variant="body2">
-          Achei os gráficos impressionantes, mas a jogabilidade poderia ser melhor.
-        </Typography>
-        </Box>
-      </Box>
-      <Box
-        sx={{
-        mt: 2,
-        display: "flex",
-        flexDirection: "column",
-        gap: 1,
-        }}
-      >
-        <Typography variant="subtitle1">Deixe seu comentário:</Typography>
-        <textarea
-        rows="4"
-        style={{
-          width: "100%",
-          padding: "3px",
-          borderRadius: "4px",
-          border: "1px solid #444",
+      <Typography variant="body2">
+        Esse jogo é incrível! A história é muito envolvente.
+      </Typography>
+    </Box>
+    <Box sx={{ backgroundColor: "#1e1e1e", padding: 2, borderRadius: 1 }}>
+      <Typography variant="subtitle2" color="gray">
+        Usuário2
+      </Typography>
+      <Typography variant="body2">
+        Achei os gráficos impressionantes, mas a jogabilidade poderia ser melhor.
+      </Typography>
+    </Box>
+  </Box>
+
+  {/* Novo formulário para postagem */}
+  <Box
+    sx={{
+      mt: 4,
+      display: "flex",
+      flexDirection: "column",
+      gap: 2,
+    }}
+  >
+    <Typography variant="subtitle1">Deixe sua Postagem:</Typography>
+    <TextField
+      multiline
+      minRows={4}
+      variant="outlined"
+      placeholder="Escreva sua postagem aqui..."
+      fullWidth
+      InputProps={{
+        style: {
           backgroundColor: "#1e1e1e",
           color: "white",
-          resize: "none",
-        }}
-        ></textarea>
-        <Button variant="contained" color="primary">
-        Enviar
-        </Button>
+        },
+      }}
+    />
+    <Button variant="contained" color="primary">
+      Enviar
+    </Button>
+  </Box>
+</Box>
+  
+  
       </Box>
-    </Box>
-    </Box>
   );
 }
