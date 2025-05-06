@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import {
   Box,
   Typography,
@@ -14,6 +14,7 @@ import {
 } from "@mui/material";
 
 export function Jogo() {
+  const navigate = useNavigate();
   const { id } = useParams();
   const [modo, setModo] = useState("postagens");
   const [jogo, setJogo] = useState({});
@@ -145,7 +146,10 @@ export function Jogo() {
             <Rating name="media" value={parseFloat(media)} precision={0.1} readOnly />
             <Typography color="gray">Avaliação média: {media}/5</Typography>
           </Box>
-          <Typography mt={2} color="gray">{jogo.estudio?.nomeEstudio}</Typography>
+          <Typography mt={2} color="gray" onClick={() => navigate(`/estudio/${jogo.estudio?.id}`)} style={{color: '#fff',
+                cursor: 'pointer',
+                textDecoration: 'underline',
+                fontWeight: 'bold',}}>{jogo.estudio?.nomeEstudio}</Typography>
           <Typography color="gray">
             {jogo.lancamentoJogo?.substring(0, 4)} • {jogo.categorias?.map(c => c.nomeCategoria).join(" / ")}
           </Typography>

@@ -55,7 +55,7 @@ export const MyAppBar = () => {
           <img
             src="/critboo.png"
             alt="Logo"
-            style={{ cursor: 'pointer', height: 30, marginRight: 8 }}
+            style={{ cursor: 'pointer', height: 75, marginRight: 2 }}
             onClick={() => navigate('/')}
           />
 
