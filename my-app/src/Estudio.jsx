@@ -23,7 +23,9 @@ export function Estudio() {
       .catch((error) => {
         console.error("Erro ao buscar estudio:", error);
       });
-  }, [id]);
+  }, []);
+
+  const jogos = estudio.jogos
 
   const jogoDestaque = jogos[0];
   const jogosVisiveis = mostrarTodos ? jogos.slice(1) : jogos.slice(1, 3);
