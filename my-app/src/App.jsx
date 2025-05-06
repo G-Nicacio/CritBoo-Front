@@ -6,6 +6,7 @@ import { Jogos } from './Jogos';
 import { Estudio } from './Estudio';
 import Perfil from './pages/Perfil';
 import EditarPerfil from './pages/EditarPerfil';
+import Post from './pages/Post';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="/" element={<Carrossel />} />
           <Route path="/jogos" element={<Jogos />} />
           <Route path="/perfil" element={<Perfil />} />
+          <Route path="/post" element={<Post />} />
           <Route path="/editar-perfil" element={<EditarPerfil />} />
           <Route path="/estudio" element={<Estudio />} />
         </Routes>
