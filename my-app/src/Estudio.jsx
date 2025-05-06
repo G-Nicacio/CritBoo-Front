@@ -1,56 +1,29 @@
-import React, { useState } from 'react';
-import { Card, CardMedia, CardContent, Typography, Button } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Card, CardMedia, Button } from '@mui/material';
+import { useNavigate, useParams } from 'react-router-dom';
 import './Estudio.css';
-
-const jogos = [
-  {
-    id: 1,
-    nome: "Subway Surfs",
-    descricao: "descrição do jogo",
-    imagem: "/BlendoDestaque.jpg",
-    data: "2025-05-05",
-  },
-  {
-    id: 2,
-    nome: "Celeste",
-    descricao: "descrição do jogo",
-    imagem: "/celeste.jpg",
-    data: "2025-04-30",
-  },
-  {
-    id: 3,
-    nome: "Elden Ring",
-    descricao: "descrição do jogo",
-    imagem: "/eldenring.jpg",
-    data: "2025-04-30",
-  },
-  {
-    id: 4,
-    nome: "God of Ragnarok",
-    descricao: "descrição do jogo",
-    imagem: "/gow-ragnarok.jpg",
-    data: "2025-04-30",
-  },
-  {
-    id: 5,
-    nome: "Red Dead Redemption II",
-    descricao: "descrição do jogo",
-    imagem: "/rdr2.jpg",
-    data: "2025-04-28",
-  },
-  {
-    id: 6,
-    nome: "Hollow Knight",
-    descricao: "descrição do jogo",
-    imagem: "/hk.jpg",
-    data: "2025-04-30",
-  },
-];
 
 export function Estudio() {
   const [mostrarTodos, setMostrarTodos] = useState(false);
   const navigate = useNavigate();
+  const { id } = useParams();
+  const [estudio, setEstudio] = useState(null);
+
+  useEffect(() => {
+    fetch(`http://localhost:8080/estudio/${id}`)
+      .then((response) => {
+        if (!response.ok) throw new Error("Erro ao buscar estudio");
+        return response.json();
+      })
+      .then((data) => {
+        setEstudio(data);
+      })
+      .catch((error) => {
+        console.error("Erro ao buscar estudio:", error);
+      });
+  }, []);
+
+  const jogos = estudio.jogos
 
   const jogoDestaque = jogos[0];
   const jogosVisiveis = mostrarTodos ? jogos.slice(1) : jogos.slice(1, 3);
@@ -60,28 +33,36 @@ export function Estudio() {
       <div className="estudio-header">
         <div className="estudio-identidade">
           <img src="/blendo-logo.png" alt="Logo BlendoGames" className="estudio-logo" />
-            <div className="estudio-textos">
-                <h2 className="estudio-nome">BlendoGames</h2>
-                <h3 className="estudio-data">Data do estudio</h3>
-            </div>
+          <div className="estudio-textos">
+            <h2 className="estudio-nome">{estudio.nome}</h2>
+            <h3 className="estudio-data">
+              {new Date(estudio.dataFundacao).toLocaleDateString('pt-BR', {
+                day: '2-digit',
+                month: 'short',
+                year: 'numeric',
+              })}
+            </h3>
+          </div>
         </div>
       </div>
 
       <div className="estudio-desc">
-        Descrição do estudio
+        {estudio.descricao}
       </div>
 
-      <div className="jogo-destaque">
-        <h2>Jogo em Destaque</h2>
-        <Card className="card-destaque">
-          <CardMedia
-            component="img"
-            className="imagem-destaque"
-            image={jogoDestaque.imagem}
-            alt={jogoDestaque.nome}
-          />
-        </Card>
-      </div>
+      {jogoDestaque && (
+        <div className="jogo-destaque">
+          <h2>Jogo em Destaque</h2>
+          <Card className="card-destaque">
+            <CardMedia
+              component="img"
+              className="imagem-destaque"
+              image={jogoDestaque.imagem}
+              alt={jogoDestaque.nome}
+            />
+          </Card>
+        </div>
+      )}
 
       <div className="jogos-lista">
         <h2>Todos os Jogos</h2>
