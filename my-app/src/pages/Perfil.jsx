@@ -1,24 +1,37 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import '../Perfil.css';
 
 const Perfil = () => {
   const navigate = useNavigate();
-  const location = useLocation();
-
   const [activeTab, setActiveTab] = useState('profile');
-  const [nome, setNome] = useState('Gatchuscos'); // Nome inicial
-  const [imagem, setImagem] = useState('/fotinha.jpg'); // Imagem inicial
-  const [jogosFavoritos, setJogosFavoritos] = useState([]); // Jogos Favoritos
+  const [nome, setNome] = useState('');
+  const [imagem, setImagem] = useState('/fotinha.jpg');
+  const [jogosFavoritos, setJogosFavoritos] = useState([]);
+
+  const usuario = JSON.parse(localStorage.getItem("usuarioLogado"));
+  const id = usuario?.id;
 
   useEffect(() => {
-    if (location.state) {
-      // Atualiza os estados quando navegar de EditarPerfil
-      if (location.state.nome) setNome(location.state.nome);
-      if (location.state.imagem) setImagem(location.state.imagem);
-      if (location.state.jogosFavoritos) setJogosFavoritos(location.state.jogosFavoritos);
+    if (!id) {
+      navigate("/login");
+      return;
     }
-  }, [location]);
+
+    fetch(`http://localhost:8080/usuario/${id}`)
+      .then((res) => {
+        if (!res.ok) throw new Error("Erro ao buscar usuário");
+        return res.json();
+      })
+      .then((data) => {
+        setNome(data.nome);
+        setImagem(data.imagem || "/fotinha.jpg");
+        setJogosFavoritos(data.jogosFavoritos || []);
+      })
+      .catch((err) => {
+        console.error("Erro ao buscar perfil:", err);
+      });
+  }, []);
 
   const tabs = [
     { label: 'Perfil', value: 'profile' },
@@ -27,8 +40,12 @@ const Perfil = () => {
   ];
 
   const handleEditProfile = () => {
-    // Navega para editar perfil, passando as informações atuais
     navigate('/editar-perfil', { state: { nome, imagem, jogosFavoritos } });
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("usuario");
+    navigate("/login");
   };
 
   return (
@@ -37,10 +54,13 @@ const Perfil = () => {
         <div className="perfil-info">
           <img src={imagem} alt="Avatar" className="perfil-avatar" width="200px" height="200px" />
           <div className="perfil-text">
-            <h2 className="perfil-username">{nome}</h2> {/* Nome dinâmico */}
+            <h2 className="perfil-username">{nome}</h2>
             <br />
             <button className="perfil-edit-button" onClick={handleEditProfile}>
               Edit Profile
+            </button>
+            <button className="perfil-logout-button" onClick={handleLogout}>
+              Logout
             </button>
           </div>
         </div>

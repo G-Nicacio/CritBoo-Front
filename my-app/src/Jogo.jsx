@@ -1,40 +1,133 @@
-import React, { useState } from "react";
-import { useParams } from 'react-router-dom';
-import { Box, Typography, Button, Card, CardMedia, Rating, Grid } from "@mui/material";
-import { useEffect } from "react";
-import TextField from '@mui/material/TextField';
-
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import {
+  Box,
+  Typography,
+  Button,
+  Card,
+  CardMedia,
+  Rating,
+  Grid,
+  TextField,
+  ToggleButton,
+  ToggleButtonGroup,
+} from "@mui/material";
 
 export function Jogo() {
-    const { id } = useParams();
-    const [jogo, setJogo] = useState({});
+  const { id } = useParams();
+  const [modo, setModo] = useState("postagens");
+  const [jogo, setJogo] = useState({});
+  const [comentarios, setComentarios] = useState([]);
+  const [novoComentario, setNovoComentario] = useState("");
+  const [avaliacoes, setAvaliacoes] = useState([]);
+  const [nota, setNota] = useState(0);
+  const [comentarioAvaliacao, setComentarioAvaliacao] = useState("");
 
-      useEffect(() => {
-        fetch(`http://localhost:8080/jogos/${id}`, { method: "GET" })
-          .then((response) => {
-            if (!response.ok) throw new Error("Erro ao buscar jogos");
-            return response.json();
-          })
-          .then((data) => {
-            setJogo(data);
-          })
-          .catch((error) => {
-            console.error("Erro ao buscar jogos:", error);
-          });
-      }, []);
+  const usuario = JSON.parse(localStorage.getItem("usuarioLogado"));
+
+  // Carrega dados iniciais
+  useEffect(() => {
+    fetch(`http://localhost:8080/jogos/${id}`)
+      .then((res) => res.json())
+      .then(setJogo)
+      .catch(console.error);
+
+    fetchComentarios();
+    fetchAvaliacoes();
+  }, [id]);
+
+  const fetchComentarios = () => {
+    fetch("http://localhost:8080/post")
+      .then((res) => res.json())
+      .then((data) => {
+        const relacionados = data.filter((p) => String(p.jogo?.id) === String(id));
+        setComentarios(relacionados);
+      })
+      .catch(console.error);
+  };
+
+  const fetchAvaliacoes = () => {
+    fetch(`http://localhost:8080/avaliacao/jogo/${id}`)
+      .then((res) => {
+        if (res.status === 404) {
+          // Nenhuma avaliação: retorna lista vazia
+          return [];
+        } else if (!res.ok) {
+          throw new Error("Erro ao buscar avaliações");
+        }
+        return res.json();
+      })
+      .then(setAvaliacoes)
+      .catch((err) => {
+        console.error("Erro ao buscar avaliações:", err);
+        setAvaliacoes([]); // Garante que a interface continua funcionando
+      });
+  };
+  
+
+  const handleEnviarComentario = async () => {
+    if (!usuario?.id) {
+      alert("Você precisa estar logado para comentar.");
+      return;
+    }
+
+    try {
+      const res = await fetch("http://localhost:8080/post", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          comentario: novoComentario,
+          usuario: { id: usuario.id },
+          jogo: { id: parseInt(id) }
+        }),
+      });
+
+      if (!res.ok) throw new Error("Erro ao enviar comentário.");
+
+      setNovoComentario("");
+      fetchComentarios();
+    } catch (err) {
+      console.error(err);
+      alert("Erro ao comentar.");
+    }
+  };
+
+  const handleEnviarAvaliacao = async () => {
+    if (!usuario?.id) {
+      alert("Você precisa estar logado para avaliar.");
+      return;
+    }
+
+    try {
+      const res = await fetch("http://localhost:8080/avaliacao/", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          comentario: comentarioAvaliacao,
+          nota: nota,
+          usuario: { id: usuario.id },
+          jogo: { id: parseInt(id) }
+        }),
+      });
+
+      if (!res.ok) throw new Error("Erro ao enviar avaliação.");
+
+      setNota(0);
+      setComentarioAvaliacao("");
+      fetchAvaliacoes();
+    } catch (err) {
+      console.error(err);
+      alert("Erro ao avaliar.");
+    }
+  };
+
+  const media =
+    avaliacoes.length > 0
+      ? (avaliacoes.reduce((soma, a) => soma + a.nota, 0) / avaliacoes.length).toFixed(1)
+      : "0.0";
 
   return (
-    <Box
-      sx={{
-        backgroundColor: "#1e1e1e",
-        color: "white",
-        minHeight: "100vh",
-        padding: 4,
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-      }}
-    >
+    <Box sx={{ backgroundColor: "#1e1e1e", color: "white", minHeight: "100vh", padding: 4 }}>
       <Grid container spacing={4} alignItems="center" justifyContent="center">
         <Grid item xs={12} md={4}>
           <Card sx={{ backgroundColor: "#2c2c2c" }}>
@@ -47,96 +140,83 @@ export function Jogo() {
           </Card>
         </Grid>
         <Grid item xs={12} md={6}>
-          <Typography variant="h3" gutterBottom fontWeight="bold">
-            {jogo.nomeJogo}
-          </Typography>
-          <div style={{ marginTop: '20px' }}></div>
-          <Typography variant="subtitle1" gutterBottom color="gray">
-          <Box >
-            <Rating name="read-only" value={2} precision={0.1} readOnly />
-            <Typography>Avaliação: 2/5</Typography>
+          <Typography variant="h3" fontWeight="bold">{jogo.nomeJogo}</Typography>
+          <Box mt={2}>
+            <Rating name="media" value={parseFloat(media)} precision={0.1} readOnly />
+            <Typography color="gray">Avaliação média: {media}/5</Typography>
           </Box>
-          <div style={{ marginTop: '10px' }}></div>
-            Rockstar Games • 2018 • Ação / Aventura
+          <Typography mt={2} color="gray">{jogo.estudio?.nomeEstudio}</Typography>
+          <Typography color="gray">
+            {jogo.lancamentoJogo?.substring(0, 4)} • {jogo.categorias?.map(c => c.nomeCategoria).join(" / ")}
           </Typography>
-          <Typography variant="body1" paragraph>
-            {jogo.descricaoJogo}
-          </Typography>
+          <Typography mt={2}>{jogo.descricaoJogo}</Typography>
         </Grid>
       </Grid>
 
+      {/* Postagens / Avaliações */}
+      <Box sx={{ maxWidth: 800, mt: 6, mx: "auto", backgroundColor: "#2c2c2c", borderRadius: 2, padding: 3 }}>
+        <ToggleButtonGroup
+          color="primary"
+          value={modo}
+          exclusive
+          onChange={(e, novo) => novo && setModo(novo)}
+          sx={{ mb: 3 }}
+        >
+          <ToggleButton value="postagens">Postagens</ToggleButton>
+          <ToggleButton value="avaliacoes">Avaliações</ToggleButton>
+        </ToggleButtonGroup>
 
-      <Box
-  sx={{
-    width: "100%",
-    maxWidth: 800,
-    mt: 4,
-    backgroundColor: "#2c2c2c",
-    borderRadius: 2,
-    padding: 2,
-  }}
->
-  <Typography variant="h5" gutterBottom>
-    Postagens
-  </Typography>
-
-  <Box
-    sx={{
-      display: "flex",
-      flexDirection: "column",
-      gap: 2,
-      mt: 2,
-    }}
-  >
-    {/* Comentários existentes */}
-    <Box sx={{ backgroundColor: "#1e1e1e", padding: 2, borderRadius: 1 }}>
-      <Typography variant="subtitle2" color="gray">
-        Usuário1
-      </Typography>
-      <Typography variant="body2">
-        Esse jogo é incrível! A história é muito envolvente.
-      </Typography>
-    </Box>
-    <Box sx={{ backgroundColor: "#1e1e1e", padding: 2, borderRadius: 1 }}>
-      <Typography variant="subtitle2" color="gray">
-        Usuário2
-      </Typography>
-      <Typography variant="body2">
-        Achei os gráficos impressionantes, mas a jogabilidade poderia ser melhor.
-      </Typography>
-    </Box>
-  </Box>
-
-  {/* Novo formulário para postagem */}
-  <Box
-    sx={{
-      mt: 4,
-      display: "flex",
-      flexDirection: "column",
-      gap: 2,
-    }}
-  >
-    <Typography variant="subtitle1">Deixe sua Postagem:</Typography>
-    <TextField
-      multiline
-      minRows={4}
-      variant="outlined"
-      placeholder="Escreva sua postagem aqui..."
-      fullWidth
-      InputProps={{
-        style: {
-          backgroundColor: "#1e1e1e",
-          color: "white",
-        },
-      }}
-    />
-    <Button variant="contained" color="primary">
-      Enviar
-    </Button>
-  </Box>
-</Box>
-  
-  
+        {modo === "postagens" ? (
+          <>
+            {comentarios.map((c, i) => (
+              <Box key={i} sx={{ backgroundColor: "#1e1e1e", p: 2, borderRadius: 1, mb: 2 }}>
+                <Typography variant="subtitle2" color="gray">{c.usuario?.nome || "Anônimo"}</Typography>
+                <Typography>{c.comentario}</Typography>
+              </Box>
+            ))}
+            <Typography variant="subtitle1">Deixe sua Postagem:</Typography>
+            <TextField
+              multiline
+              minRows={4}
+              fullWidth
+              value={novoComentario}
+              onChange={(e) => setNovoComentario(e.target.value)}
+              placeholder="Escreva sua postagem..."
+              InputProps={{ style: { backgroundColor: "#1e1e1e", color: "white" } }}
+              sx={{ mt: 2 }}
+            />
+            <Button variant="contained" sx={{ mt: 2 }} onClick={handleEnviarComentario}>Enviar</Button>
+          </>
+        ) : (
+          <>
+            {avaliacoes.map((a) => (
+              <Box key={a.id} sx={{ backgroundColor: "#1e1e1e", p: 2, borderRadius: 1, mb: 2 }}>
+                <Typography variant="subtitle2" color="gray">{a.usuario?.nome}</Typography>
+                <Rating value={a.nota} precision={0.5} readOnly />
+                <Typography>{a.comentario}</Typography>
+              </Box>
+            ))}
+            <Typography variant="subtitle1">Avalie você também:</Typography>
+            <Rating
+              value={nota}
+              precision={0.5}
+              onChange={(e, v) => setNota(v)}
+              sx={{ mt: 1 }}
+            />
+            <TextField
+              multiline
+              minRows={3}
+              fullWidth
+              value={comentarioAvaliacao}
+              onChange={(e) => setComentarioAvaliacao(e.target.value)}
+              placeholder="Escreva sua opinião..."
+              InputProps={{ style: { backgroundColor: "#1e1e1e", color: "white" } }}
+              sx={{ mt: 2 }}
+            />
+            <Button variant="contained" sx={{ mt: 2 }} onClick={handleEnviarAvaliacao}>Enviar Avaliação</Button>
+          </>
+        )}
       </Box>
+    </Box>
   );
 }

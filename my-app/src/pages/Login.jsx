@@ -20,7 +20,7 @@ export const Login = () => {
 
       if (response.ok) {
         const data = await response.json();
-        localStorage.setItem('usuario', JSON.stringify(data));
+        localStorage.setItem('usuarioLogado', JSON.stringify(data));
         navigate('/');
       } else {
         setErro('Email ou senha inválidos.');

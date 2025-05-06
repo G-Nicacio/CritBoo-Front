@@ -26,14 +26,18 @@ import { useNavigate } from 'react-router-dom';
 
 
 export const MyAppBar = () => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-    const menuItems = [
-      { label: 'HOME', path: '/' },
-        { label: 'JOGOS', path: '/jogos' },
-        { label: 'NOTICIAS', path: '/noticias' },
-        { label: 'LOGAR', path: '/signin' },
-    ];
+  const usuario = JSON.parse(localStorage.getItem("usuarioLogado"));
+  const estaLogado = usuario && usuario.id;
+
+  const menuItems = [
+    { label: 'JOGOS', path: '/jogos' },
+    { label: 'NOTICIAS', path: '/noticias' },
+    estaLogado
+      ? { label: 'PERFIL', path: '/perfil' }
+      : { label: 'LOGAR', path: '/login' }
+  ];
 
   return (
     <AppBar position="fixed" sx={{ backgroundColor: 'rgba(0, 0, 0, 0.85)', boxShadow: 'none' }}>

@@ -7,21 +7,23 @@ import { useNavigate } from 'react-router-dom';
 
 export function Jogos() {
     const navigate = useNavigate();
-  const [jogos, setJogo] = useState([]);
+    const [jogos, setJogos] = useState([]);
 
-  useEffect(() => {
-    fetch("http://localhost:8080/jogos", { method: "GET" })
-      .then((response) => {
-        if (!response.ok) throw new Error("Erro ao buscar jogos");
-        return response.json();
-      })
-      .then((data) => {
-        setJogo(data);
-      })
-      .catch((error) => {
-        console.error("Erro ao buscar jogos:", error);
-      });
-  }, []);
+
+    useEffect(() => {
+      fetch("http://localhost:8080/jogos", { method: "GET" })
+        .then((response) => {
+          if (!response.ok) throw new Error("Erro ao buscar jogos");
+          return response.json();
+        })
+        .then((data) => {
+          console.log("Jogos recebidos:", data);
+          setJogos(data.content);
+        })
+        .catch((error) => {
+          console.error("Erro ao buscar jogos:", error);
+        });
+    }, []);
 
 
 

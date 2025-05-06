@@ -12,14 +12,33 @@ export const Cadastro = () => {
 
   const handleCadastro = async () => {
     setErro('');
-
+  
+    const dataFormatada = dataNascimento ? dataNascimento.split('T')[0] : null;
+  
+    if (!nome || !email || !senha || !dataFormatada) {
+      setErro("Preencha todos os campos.");
+      return;
+    }
+  
     try {
+      const body = {
+        nome,
+        email,
+        senha,
+        dataNascimento: dataFormatada
+      };
+  
+      console.log("Enviando para o backend:", body);
+  
       const response = await fetch('http://localhost:8080/usuario', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ nome, email, senha, dataNascimento }),
+        body: JSON.stringify(body),
       });
-
+  
+      const textoErro = await response.text();
+      console.log('Resposta do servidor:', textoErro);
+  
       if (response.ok) {
         navigate('/login');
       } else {
@@ -30,6 +49,7 @@ export const Cadastro = () => {
       setErro('Erro ao conectar com o servidor.');
     }
   };
+  
 
   return (
     <div className="login-card">
