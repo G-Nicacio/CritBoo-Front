@@ -25,8 +25,6 @@ export function Estudio() {
       });
   }, []);
 
-  const jogos = estudio.jogos
-
   const jogoDestaque = jogos[0];
   const jogosVisiveis = mostrarTodos ? jogos.slice(1) : jogos.slice(1, 3);
 
