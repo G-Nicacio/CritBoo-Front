@@ -32,7 +32,7 @@ export const MyAppBar = () => {
       { label: 'HOME', path: '/' },
         { label: 'JOGOS', path: '/jogos' },
         { label: 'NOTICIAS', path: '/noticias' },
-        { label: 'LOGAR', path: '/login' },
+        { label: 'LOGAR', path: '/signin' },
     ];
 
   return (

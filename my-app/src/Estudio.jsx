@@ -8,6 +8,7 @@ export function Estudio() {
   const navigate = useNavigate();
   const { id } = useParams();
   const [estudio, setEstudio] = useState(null);
+  const [jogos, setJogos] = useState([]);
 
   useEffect(() => {
     fetch(`http://localhost:8080/estudio/${id}`)
@@ -17,6 +18,7 @@ export function Estudio() {
       })
       .then((data) => {
         setEstudio(data);
+        setJogos(data.jogos || []);
       })
       .catch((error) => {
         console.error("Erro ao buscar estudio:", error);
@@ -34,7 +36,7 @@ export function Estudio() {
         <div className="estudio-identidade">
           <img src="/blendo-logo.png" alt="Logo BlendoGames" className="estudio-logo" />
           <div className="estudio-textos">
-            <h2 className="estudio-nome">{estudio.nome}</h2>
+            <h2 className="estudio-nome">{estudio.nomeEstudio}</h2>
             <h3 className="estudio-data">
               {new Date(estudio.dataFundacao).toLocaleDateString('pt-BR', {
                 day: '2-digit',
