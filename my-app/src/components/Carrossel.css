@@ -1,8 +1,5 @@
 .carousel-container {
-  position: absolute;
-  top: 160px; /* controla a altura do carrossel na tela */
-  left: 50%;
-  transform: translateX(-50%);
+  position: relative;
   width: 100vw;
   max-width: 1400px;
   height: 400px;
@@ -10,8 +7,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1;
+  margin-top: 0px;
 }
+
   
 .carousel-slide {
   position: relative;
@@ -113,4 +111,106 @@
 
 .arrow.right {
   right: 16%;
+}
+
+.carrossel-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20px; /* sobe o bloco */
+}
+
+.carousel-title {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 4px; /* mais próximo do carrossel */
+  color: white;
+}
+
+
+.carousel2-wrapper {
+  margin-top: 40px;
+  width: 100%;
+  max-width: 1400px;
+  padding: 0 2rem;
+}
+
+.carousel2-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  margin-left: 8px;
+  color: white;
+  text-align: left;
+}
+
+.noticia-wrapper {
+  width: 100%;
+  max-width: 1400px;
+  margin-top: 40px;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.noticia-title {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: white;
+  align-self: flex-start;
+}
+
+.noticia-container {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.noticia-box {
+  flex: 1 1 45%;
+  background-color: #1f1f1f;
+  padding: 20px;
+  border-radius: 12px;
+  color: white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  min-height: 200px;
+  transition: transform 0.3s ease;
+}
+
+.noticia-box:hover {
+  transform: scale(1.02);
+}
+.noticia-box-title {
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+}
+
+.noticia-content {
+  font-size: 1rem;
+  margin-bottom: 15px;
+}
+
+.noticia-jogo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: auto;
+}
+
+.noticia-img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 0 8px black;
+}
+
+.noticia-jogo-nome {
+  font-weight: bold;
+  font-size: 1rem;
+  color: #ccc;
 }
