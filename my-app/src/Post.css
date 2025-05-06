@@ -1,0 +1,78 @@
+.Post-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #1c1c1c; /* fundo escuro uniforme */
+    padding: 40px 20px;
+    color: #fff;
+  }
+  
+  .Post-box {
+    background-color: #2c2c2c;
+    color: #fff;
+    padding: 30px 40px;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    max-width: 500px;
+    width: 100%;
+  }
+  
+  .Post-box h1 {
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 28px;
+    color: #e0e0e0;
+  }
+  
+  .Post-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .campo {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+  }
+  
+  .Post-form label {
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #bbb;
+  }
+  
+  .Post-form input {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+    background-color: #3a3a3a;
+    color: #fff;
+    font-size: 14px;
+    box-sizing: border-box;
+  }
+  
+  .Post-form input::placeholder {
+    color: #888;
+  }
+  
+  .Post-form button {
+    width: 100%;
+    padding: 12px;
+    background-color: #444;
+    border: none;
+    border-radius: 6px;
+    color: #fff;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .Post-form button:hover {
+    background-color: #555;
+  }
+  
