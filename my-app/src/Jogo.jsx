@@ -26,13 +26,20 @@ export function Jogo() {
 
   const usuario = JSON.parse(localStorage.getItem("usuarioLogado"));
 
-  // Carrega dados iniciais
   useEffect(() => {
-    fetch(`http://localhost:8080/jogos/${id}`)
-      .then((res) => res.json())
-      .then(setJogo)
-      .catch(console.error);
-
+    fetch(`http://localhost:8080/jogos/${id}`, { method: "GET" })
+      .then((response) => {
+        if (!response.ok) throw new Error("Erro ao buscar jogos");
+        return response.json();
+      })
+      .then((data) => {
+        console.log("Jogos recebidos:", data);
+        setJogo(data);
+      })
+      .catch((error) => {
+        console.error("Erro ao buscar jogos:", error);
+      });
+  
     fetchComentarios();
     fetchAvaliacoes();
   }, [id]);
@@ -51,7 +58,6 @@ export function Jogo() {
     fetch(`http://localhost:8080/avaliacao/jogo/${id}`)
       .then((res) => {
         if (res.status === 404) {
-          // Nenhuma avaliação: retorna lista vazia
           return [];
         } else if (!res.ok) {
           throw new Error("Erro ao buscar avaliações");
@@ -61,7 +67,7 @@ export function Jogo() {
       .then(setAvaliacoes)
       .catch((err) => {
         console.error("Erro ao buscar avaliações:", err);
-        setAvaliacoes([]); // Garante que a interface continua funcionando
+        setAvaliacoes([]); 
       });
   };
   
@@ -106,8 +112,8 @@ export function Jogo() {
         body: JSON.stringify({
           comentario: comentarioAvaliacao,
           nota: nota,
-          usuario: { id: usuario.id },
-          jogo: { id: parseInt(id) }
+          usuarioId: usuario.id ,
+          jogoId: parseInt(id) 
         }),
       });
 
@@ -157,7 +163,6 @@ export function Jogo() {
         </Grid>
       </Grid>
 
-      {/* Postagens / Avaliações */}
       <Box sx={{ maxWidth: 800, mt: 6, mx: "auto", backgroundColor: "#2c2c2c", borderRadius: 2, padding: 3 }}>
         <ToggleButtonGroup
           color="primary"
